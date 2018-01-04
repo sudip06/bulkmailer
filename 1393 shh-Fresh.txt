@@ -1,0 +1,12 @@
+216.85.164.170|nagios|nagios|US|South Carolina|Greenville|124||
+24.43.243.84|PlcmSpIp|PlcmSpIp|US|California|Vista|327||
+175.143.50.101|test|123456|MY|Kuala Lumpur|Kuala Lumpur|530||
+66.76.123.144|pos|pos|US|Arkansas|Mountain View|764||
+216.45.90.99|admin|admin|US|Texas|Seguin|812||
+112.216.242.204|root|abcd1234|KR|Seoul|Seoul|670||
+110.77.241.40|root|admin|TH|Bangkok|Bangkok|608||
+110.77.241.227|root|admin|TH|Bangkok|Bangkok|624||
+1.238.106.137|nobody|nobody|KR|Seoul|Seoul|639||
+110.78.169.33|root|admin||||280||
+192.169.175.88|developer|developer|US|Arizona|Scottsdale|171||
+12.105.144.162|ubnt|ubnt|US|||124||

@@ -1,0 +1,34 @@
+
+[1] check inbox mode
+socks4-5 / proxy / ssh
+
+
+[2] send mode
+- socks4-5 / proxy / ssh
+- Limit send per SMTP
+- group mail 
+- Interval (HH:MM:SS)
+- notification if send is not inbox [on/off]
+- attachment [on/off]
+- tags mode [on/off]
+
+
+-------------------------------------
+
+[1] check inbox mode
+	retrive input (three options : socks / proxy / ssh ) , this will set the method of verifying if the current socks / proxy / ssh sends the emails
+	directly to inbox , by using imap and accessing the file in  test/1.txt , this file contains emails and their passwords in form of email:pass ,
+	and by sending an email from the current  socks / proxy / ssh to the chosen email from test/1.txt , after the mail was sent , we will use imap and access
+	the inbox and look for the subject of that mail , after we will the check the originating IP in the headers (X-ME-IP) if it is the same as the one of the chosen socks / proxy / ssh then we will add this IP to the whitelist file , otherwise put it in the blacklist file .
+
+	
+	----------------------------
+	
+[2] send mode
+
+- socks4-5 / proxy / ssh
+	Before we start sending we need to check if the current IP delivers the emails to inbox , by using imap and checking the originating IP header (XE-ME-IP)
+	just in case if the user didnt input [1] check mode .
+	We need to send 500 emails per SMTP
+	After finishing the current 500 mails , we need to resend another mail to see  if the used IP delivers the emails to inbox again by using IMAP 
+	and checking the originating IP header (XE-ME-IP) , if it still delivers mails inbox then we dont need to use a new socks4-5 / proxy / ssh and SMTP account .
