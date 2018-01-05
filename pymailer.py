@@ -10,7 +10,10 @@ import sys
 from datetime import datetime
 from email import message
 from time import sleep
-
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+from email.MIMEBase import MIMEBase
+from email import encoders
 import config
 
 # setup logging to specified log file
@@ -88,6 +91,7 @@ class PyMailer():
         csv_file.close()
 
     def _html_parser(self, recipient_data):
+        from base64 import encodebytes
         """
         Open, parse and substitute placeholders with recipient data.
         """
@@ -120,13 +124,24 @@ class PyMailer():
         html_content = self._html_parser(recipient_data)
 
         # instatiate the email object and assign headers
-        email_message = message.Message()
-        email_message.add_header('From', sender)
-        email_message.add_header('To', recipient)
-        email_message.add_header('Subject', self.subject)
-        email_message.add_header('MIME-Version', '1.0')
-        email_message.add_header('Content-Type', 'text/html; charset="utf-8"')
-        email_message.set_payload(html_content)
+        msg=MIMEMultipart();
+        msg['Subject']=self.subject
+        msg['From']=sender
+        msg['To']=recipient
+        #attachment=open(
+        part=MIMEBase('application','octet-stream')
+        part.set_payload((attachment).read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition','attachment; filename=%s" % filename)
+        msg.attach(part)
+
+        #email_message = message.Message()
+        #email_message.add_header('From', sender)
+        #email_message.add_header('To', recipient)
+        #email_message.add_header('Subject', self.subject)
+        ##email_message.add_header('MIME-Version', '1.0')
+        ##email_message.add_header('Content-Type', 'text/html; charset="utf-8"')
+        ##email_message.set_payload(html_content)
 
         return email_message.as_string()
 
